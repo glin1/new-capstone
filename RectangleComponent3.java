@@ -10,7 +10,8 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.JComponent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import javax.swing.ImageIcon;
+import java.awt.Image;
 import javax.swing.Timer;
 
 /**
@@ -68,7 +69,7 @@ public class RectangleComponent3 extends JComponent
     private Ellipse2D circle1;
     
     private boolean stillInGame = true;
-
+    private Image background; 
 
     public RectangleComponent3()
     {  
@@ -82,7 +83,8 @@ public class RectangleComponent3 extends JComponent
         box7= new Rectangle (BOX_X7, BOX_Y7, BOX_WIDTH7, BOX_HEIGHT7);
         
         circle1= new Ellipse2D.Double(circleX, circleY, circle_radius , circle_radius);
-        
+        ImageIcon ii = new ImageIcon("C:\\Users\\Guo\\Pictures\\Background.");
+        background = ii.getImage();  
 
         this.setFocusable(true);
         this.addKeyListener(new KeyStrokeListener());
@@ -92,6 +94,7 @@ public class RectangleComponent3 extends JComponent
     public void paintComponent(Graphics g)
     { 
         Graphics2D g2 = (Graphics2D) g;
+        g2.drawImage(background,0,0,this);
         g2.draw(box);
         g2.draw(box2);
         g2.draw(box3);
@@ -100,6 +103,10 @@ public class RectangleComponent3 extends JComponent
         g2.draw(box6);
         g2.draw(box7);
         g2.draw(circle1);
+        ImageIcon ii = new ImageIcon("Background.jpg");
+        background = ii.getImage();  
+        g2.drawImage(background,0,0,this);
+        
         int delay =1000;
         ActionListener taskPerformer = new ActionListener()
         {
